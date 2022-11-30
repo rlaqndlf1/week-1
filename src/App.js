@@ -5,14 +5,14 @@ let number = 3;
 
 function User({ user, deleteUserHandler, onEditHandler }) {
   return (
-    <div className="todo-container">
+    <div className="user-container">
       <div>
-        <h2 className="todo-title">{user.title}</h2>
+        <h2 className="user-title">{user.title}</h2>
         <div>{user.body}</div>
       </div>
       <div className="button-set">
         <button
-          className="todo-delete-button button"
+          className="user-delete-button button"
           onClick={() => {
             deleteUserHandler(user.id);
           }}
@@ -20,7 +20,7 @@ function User({ user, deleteUserHandler, onEditHandler }) {
           삭제하기
         </button>
         <button
-          className="todo-complete-button button"
+          className="user-complete-button button"
           onClick={() => {
             onEditHandler(user.id);
           }}
