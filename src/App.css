@@ -1,82 +1,14 @@
-.list-wrapper {
+.style {
+  padding: 100px;
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
 }
-.list-container {
-  padding: 0 24px;
-}
-.user-container {
-  border: 4px solid teal;
-  border-radius: 12px;
-  padding: 12px 24px 24px;
-  width: 270px;
-}
-.button-set {
-  display: flex;
-  gap: 10px;
-  margin-top: 24px;
-}
-.button {
-  border: none;
-  width: 50%;
-  height: 40px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.user-delete-button {
-  border: 2px solid red;
-  background-color: #fff;
-}
-.user-complete-button {
-  border: 2px solid green;
-  background-color: #fff;
-}
-.container {
-  border: 1px solid #ddd;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-.layout {
-  max-width: 1200px;
-  min-width: 800px;
-  margin: 0 auto;
-}
-.add-form {
-  background-color: #eee;
-  border-radius: 12px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px;
-  gap: 20px;
-}
-.input-group {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.form-label {
-  font-size: 16px;
-  font-weight: 700;
-}
-.add-input {
-  height: 40px;
-  width: 240px;
-  border: none;
-  border-radius: 12px;
-  padding: 0 12px;
-}
-.add-button {
-  border: none;
-  height: 40px;
+.squareStyle {
+  width: 100px;
+  height: 100px;
+  border: 1px solid green;
   border-radius: 10px;
-  background-color: teal;
-  width: 140px;
-  color: #fff;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

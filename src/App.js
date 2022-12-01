@@ -1,149 +1,77 @@
 import React, { useState } from "react";
 import "./App.css"; // 🔥 반드시 App.css 파일을 import 해줘야 합니다.
 
-let number = 3;
-
-function User({ user, deleteUserHandler, onEditHandler }) {
+function Todo(props) {
   return (
-    <div className="user-container">
-      <div>
-        <h2 className="user-title">{user.title}</h2>
-        <div>{user.body}</div>
-      </div>
-      <div className="button-set">
-        <button
-          className="user-delete-button button"
-          onClick={() => {
-            deleteUserHandler(user.id);
-          }}
-        >
-          삭제하기
-        </button>
-        <button
-          className="user-complete-button button"
-          onClick={() => {
-            onEditHandler(user.id);
-          }}
-        >
-          {user.isDone ? "취소" : "완료"}
-        </button>
-      </div>
+    <div className="style">
+      <h2 className="squarestyle">{props.todo.Title}</h2>
     </div>
   );
 }
+function Todo1(props) {
+  return (
+    <div className="style">
+      <h2 className="squarestyle">{props.todo1.contents}</h2>
+    </div>
+  );
+}
+
 const App = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      title: "리액트 공부하기",
-      body: "리액트 기초를 공부해봅시다.",
-      isDone: false,
-    },
-    {
-      id: 2,
-      title: "리액트 공부하기",
-      body: "리액트 기초를 공부해봅시다.",
-      isDone: true,
-    },
+  const [todos, setTodos] = useState([
+    { id: 1, Title: "송중기" },
+    { id: 2, Title: "송강" },
+  ]);
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
+
+  const [todos1, setTodos1] = useState([
+    { id: 1, Contents: "송중기" },
+    { id: 2, Contents: "송강" },
   ]);
 
-  const initialState = {
-    id: 0,
-    title: "",
-    body: "",
-    isDone: false,
+  const addtodoHandler = () => {
+    const newtodo = {
+      id: todos.length + 1,
+      Title: title,
+    };
+    setTodos([...todos, newTodos]);
   };
-  const [user, setUser] = useState(initialState);
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
-  };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    if (user.title.trim() === "" || user.body.trim() === "") return;
-    setUsers([...users, { ...user, id: number }]);
-    setUser(initialState);
-    number++;
-  };
-
-  const deleteUserHandler = (id) => {
-    const newUsers = users.filter((user) => user.id !== id);
-    setUsers(newUsers);
-  };
-  const onEditHandler = (id) => {
-    const newUsers = users.map((user) => {
-      if (user.id === id) {
-        return { ...user, isDone: !user.isDone };
-      } else {
-        return { ...user };
-      }
-    });
-    setUsers(newUsers);
+  const add1todoHandler = () => {
+    const newtodo1 = {
+      id: todos1.length + 1,
+      Contents: contents,
+    };
+    setTodos([...todos1, newTodos1]);
   };
 
   return (
-    <div className="layout">
-      <div className="container">
-        <div>My Todo List</div>
-        <div>React</div>
-      </div>
-      <form onSubmit={onSubmitHandler} className="add-form">
-        <div className="input-group">
-          <label className="form-label">제목</label>
-          <input
-            type="text"
-            name="title"
-            value={user.title}
-            onChange={onChangeHandler}
-          />
-          <label className="form-label">내용</label>
-          <input
-            type="text"
-            name="body"
-            value={user.body}
-            onChange={onChangeHandler}
-          />
-        </div>
-        <button className="add-button">추가하기</button>
-      </form>
-      <div className="list-container">
-        <h2 className="list-title">Working.. 🔥</h2>
-        <div className="list-wrapper">
-          {users.map((user) => {
-            if (!user.isDone) {
-              return (
-                <User
-                  user={user}
-                  key={user.id}
-                  setUsers={setUsers}
-                  onEditHandler={onEditHandler}
-                  deleteUserHandler={deleteUserHandler}
-                ></User>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
-        <h2 className="list-title">Done..! 🎉</h2>
-        <div className="list-wrapper">
-          {users.map((user) => {
-            if (user.isDone) {
-              return (
-                <User
-                  user={user}
-                  key={user.id}
-                  setUsers={setUsers}
-                  onEditHandler={onEditHandler}
-                  deleteUserHandler={deleteUserHandler}
-                ></User>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
-      </div>
+    <div>
+      <input
+        value={title}
+        placeholder="제목을 입력해주세요"
+        // 인풋 이벤트로 들어온 입력 값을 name의 값으로 업데이트
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <h2>Todo List</h2>
+      <button color="green" onClick={add1todoHandler}>
+        추가하기
+      </button>
+      {todos1.map((todo1) => {
+        return <Todo1 todo={todo1} key={todo1.id}></Todo1>;
+      })}
+      <input
+        value={contents}
+        placeholder="내용를 입력해주세요"
+        // 인풋 이벤트로 들어온 입력 값을 age의 값으로 업데이트
+        onChange={(e) => setContents(e.target.value)}
+      />
+      <h2>Todo List</h2>
+      <button color="green" onClick={addtodoHandler}>
+        추가하기
+      </button>
+      {todos.map((todo) => {
+        return <Todo todo={todo} key={todo.id}></Todo>;
+      })}
     </div>
   );
 };
